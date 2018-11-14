@@ -5,7 +5,7 @@ import java.util.Date;
 import java.util.List;
 
 @Entity
-public class Order {
+public class Purchase {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -20,12 +20,12 @@ public class Order {
     @JoinColumn(name = "client_id")
     private Client client;
 
-    @OneToMany(mappedBy = "order")
-    private List<OrderDetails> orderDetails;
+    @OneToMany(mappedBy = "purchase")
+    private List<PurchaseDetails> purchaseDetails;
 
-    public Order() {}
+    public Purchase() {}
 
-    public Order(Date date) {
+    public Purchase(Date date) {
         this.date = date;
     }
 
@@ -39,7 +39,7 @@ public class Order {
 
     @Override
     public String toString() {
-        return "Order{" +
+        return "Purchase{" +
                 "id=" + id +
                 '}';
     }

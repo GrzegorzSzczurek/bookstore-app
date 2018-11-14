@@ -19,7 +19,7 @@ public class Client {
     private String lastName;
 
     @OneToMany(mappedBy = "client")
-    private List<Order> orders;
+    private List<Purchase> purchases;
 
     public Client() {}
 

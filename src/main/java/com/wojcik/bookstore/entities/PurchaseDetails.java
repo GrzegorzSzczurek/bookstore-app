@@ -4,8 +4,8 @@ import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
-@Table(name = "order_details")
-public class OrderDetails implements Serializable {
+@Table(name = "purchase_details")
+public class PurchaseDetails implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -14,23 +14,23 @@ public class OrderDetails implements Serializable {
 
     @ManyToOne(cascade = {CascadeType.DETACH, CascadeType.MERGE,
                           CascadeType.PERSIST, CascadeType.REFRESH})
-    @JoinColumn(name = "order_id")
-    private Order order;
+    @JoinColumn(name = "purchase_id")
+    private Purchase purchase;
 
     @ManyToOne(cascade = {CascadeType.DETACH, CascadeType.MERGE,
             CascadeType.PERSIST, CascadeType.REFRESH})
     @JoinColumn(name = "book_id")
     private Book book;
 
-    public OrderDetails() {}
+    public PurchaseDetails() {}
 
     public int getId() { return id; }
 
     public void setId(int id) { this.id = id; }
 
-    public Order getOrder() { return order; }
+    public Purchase getPurchase() { return purchase; }
 
-    public void setOrder(Order order) { this.order = order; }
+    public void setPurchase(Purchase purchase) { this.purchase = purchase; }
 
     public Book getBook() {  return book; }
 
@@ -38,9 +38,9 @@ public class OrderDetails implements Serializable {
 
     @Override
     public String toString() {
-        return "OrderDetails{" +
+        return "PurchaseDetails{" +
                 "id=" + id +
-                ", order=" + order +
+                ", purchase=" + purchase +
                 ", book=" + book +
                 '}';
     }

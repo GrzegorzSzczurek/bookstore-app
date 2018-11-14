@@ -19,7 +19,7 @@ public class Book {
     private String title;
 
     @OneToMany(mappedBy = "book")
-    private List<OrderDetails> orderDetails;
+    private List<PurchaseDetails> purchaseDetails;
 
     public Book() {}
 
