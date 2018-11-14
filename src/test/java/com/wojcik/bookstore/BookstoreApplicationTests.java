@@ -16,12 +16,22 @@ public class BookstoreApplicationTests {
     }
 
     @Test
-    public void isClientNameSetting() {
+    public void isClientFirstNameSetting() {
 
         Client c = new Client();
 
         c.setFirstName("Patryk");
 
         Assert.assertTrue(c.getFirstName().equals("Patryk"));
+    }
+
+    @Test
+    public void isClientLastNameSetting() {
+
+        Client c = new Client();
+
+        c.setLastName("Wojcik");
+
+        Assert.assertTrue(c.getFirstName().equals("Wójcik"));
     }
 }
