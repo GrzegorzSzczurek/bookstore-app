@@ -31,8 +31,8 @@ public class BookstoreApplicationTests {
 
         Client c = new Client();
 
-        c.setLastName("Wojcik");
+        c.setLastName("Wójcik");
 
-        Assert.assertTrue(c.getLastName().equals("Wojcik"));
+        Assert.assertTrue(c.getLastName().equals("Wójcik"));
     }
 }
