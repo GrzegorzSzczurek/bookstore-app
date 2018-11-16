@@ -4,44 +4,64 @@ import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
-@Table(name = "purchase_details")
-public class PurchaseDetails implements Serializable {
+@Table
+public class PurchaseDetails {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
+    @Column
     private int id;
 
     @ManyToOne(cascade = {CascadeType.DETACH, CascadeType.MERGE,
                           CascadeType.PERSIST, CascadeType.REFRESH})
-    @JoinColumn(name = "purchase_id")
+    @JoinColumn
     private Purchase purchase;
 
     @ManyToOne(cascade = {CascadeType.DETACH, CascadeType.MERGE,
             CascadeType.PERSIST, CascadeType.REFRESH})
-    @JoinColumn(name = "book_id")
+    @JoinColumn
     private Book book;
+
+    @Column
+    private int quantity;
 
     public PurchaseDetails() {}
 
-    public int getId() { return id; }
+    public PurchaseDetails(Purchase purchase, Book book, int quantity) {
+        this.purchase = purchase;
+        this.book = book;
+        this.quantity = quantity;
+    }
 
-    public void setId(int id) { this.id = id; }
+    public int getId() {
+        return id;
+    }
 
-    public Purchase getPurchase() { return purchase; }
+    public void setId(int id) {
+        this.id = id;
+    }
 
-    public void setPurchase(Purchase purchase) { this.purchase = purchase; }
+    public Purchase getPurchase() {
+        return purchase;
+    }
 
-    public Book getBook() {  return book; }
+    public void setPurchase(Purchase purchase) {
+        this.purchase = purchase;
+    }
 
-    public void setBook(Book book) { this.book = book; }
+    public Book getBook() {
+        return book;
+    }
 
-    @Override
-    public String toString() {
-        return "PurchaseDetails{" +
-                "id=" + id +
-                ", purchase=" + purchase +
-                ", book=" + book +
-                '}';
+    public void setBook(Book book) {
+        this.book = book;
+    }
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
     }
 }

@@ -13,9 +13,6 @@ import java.util.Optional;
 @Component
 public class AppInitializer implements CommandLineRunner {
 
-    @Autowired
-    BookRepository bookRepository;
-
     @Override
     public void run(String... args) throws Exception {
 
