@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>All users are here</title>
+</head>
+<body>
+    <h1>All users</h1>
+
+    <hr><br>
+
+    <p th:each="user : ${users}"
+        th:text="${user.toString()}"/>
+
+    <br><hr><br>
+
+    <a href="/">Back</a>
+</body>
+</html>

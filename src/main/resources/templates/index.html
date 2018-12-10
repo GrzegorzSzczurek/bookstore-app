@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Bookstore | Log in</title>
+</head>
+<body>
+    <h1>Bookstore</h1>
+
+    <hr>
+
+    <h4>Don't have an account? <a href="/registerForm">Register here</a></h4>
+    <h4>Log in</h4>
+
+    <form action="#" th:action="@{/process}" th:object="${user}" method="post">
+
+        <input type="text"     th:field="*{username}" placeholder="Username" > <br><br>
+        <input type="password" th:field="*{password}" placeholder="Password" > <br><br>
+
+        <input type="submit" value="Log in">    <input type="reset" value="Reset">
+    </form>
+
+    <br><hr><br>
+
+    <a href="/showUsers">Show all users</a>
+
+</body>
+</html>

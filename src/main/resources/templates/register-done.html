@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Bookstore | Registered successfully</title>
+</head>
+<body>
+
+    <h1>User registered successfully</h1>
+
+    <hr>
+
+    <p th:text="'Welcome, ' + ${user.getUsername()} + '. Log in now!'" />
+
+    <a href="/">Log in</a>
+
+</body>
+</html>

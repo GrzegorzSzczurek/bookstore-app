@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Bookstore | Register</title>
+</head>
+<body>
+
+    <h1>Register</h1>
+
+    <hr><br>
+
+    <form action="#" th:action="@{/registerForm/process}" th:object="${user}" method="post">
+
+        <input type="text" th:field="*{username}" placeholder="Username">
+            <span th:if="${#fields.hasErrors('username')}" th:errors="*{username}" th:errorclass="error">Error</span><br><br>
+
+        <input type="text" th:field="*{firstName}" placeholder="First name">
+            <span th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}">Error</span><br><br>
+
+        <input type="text" th:field="*{lastName}" placeholder="Last name">
+            <span th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}">Error</span><br><br>
+
+        <input type="email" th:field="*{email}" placeholder="E-mail">
+            <span th:if="${#fields.hasErrors('email')}" th:errors="*{email}">Error</span><br><br>
+
+        <input type="password" th:field="*{password}" placeholder="Password">
+            <span th:if="${#fields.hasErrors('password')}" th:errors="*{password}">Error</span><br><br>
+
+        <!-- Submit -->
+
+        <input type="submit" value="Register">    <input type="reset" value="Reset">
+
+    </form>
+
+    <br><hr><br>
+
+    <a href="/">Cancel</a>
+</body>
+</html>

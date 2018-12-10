@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Bookstore | Authorization</title>
+</head>
+<body>
+
+    <h1>User logged in</h1>
+
+    <hr>
+
+    <p th:text="'User: ' + ${loggedUser.getUsername()} + ' logged in. '" />
+    <p th:text="'ID: ' + ${loggedUser.getId()} + '. '" />
+
+    <hr><br>
+
+    <a href="/">Back</a>
+
+</body>
+</html>
