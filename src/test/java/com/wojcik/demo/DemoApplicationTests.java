@@ -38,4 +38,12 @@ public class DemoApplicationTests {
         Assert.assertTrue(user.getFirstName().equals("Patryk"));
     }
 
+    @Test
+    public void isUserLastNameSettingCorrectly() {
+        User user = new User();
+        user.setLastName("Wojcik");
+
+        Assert.assertTrue(user.getLastName().equals("Wójcik"));
+    }
+
 }
