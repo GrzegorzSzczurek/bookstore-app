@@ -10,12 +10,12 @@
 
     <hr>
 
-    <p th:text="'User: ' + ${loggedUser.getUsername()} + ' logged in. '" />
-    <p th:text="'ID: ' + ${loggedUser.getId()} + '. '" />
+    <p th:text="'User: ' + ${user.getUsername()} + ' logged in. '" />
+    <p th:text="'ID: ' + ${user.getId()} + '. '" />
 
     <hr><br>
 
-    <a href="/">Back</a>
+    <a href="/">Log out</a>
 
 </body>
 </html>

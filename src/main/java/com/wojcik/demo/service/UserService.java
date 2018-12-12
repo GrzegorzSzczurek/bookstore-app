@@ -9,6 +9,10 @@ public interface UserService {
     void save(User user);
 
     User get(String username, String password);
+    User get(String username);
+
+    boolean isUsernameTaken(String username);
+    boolean isEmailTaken(String email);
 
     List<User> getUsers();
 }

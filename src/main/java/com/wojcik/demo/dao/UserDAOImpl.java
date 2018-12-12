@@ -33,6 +33,34 @@ public class UserDAOImpl implements UserDAO {
     }
 
     @Override
+    public User get(String username) {
+        Session session = entityManagerFactory.unwrap(SessionFactory.class).openSession();
+        List<User> users = session.createQuery("from User u where u.username='"+username+"'").getResultList();
+        session.close();
+
+        if(users.isEmpty()) return null;
+        return users.get(0);
+    }
+
+    @Override
+    public boolean isUsernameTaken(String username) {
+        User user = this.get(username);
+
+        if(user == null) return false;
+        return true;
+    }
+
+    @Override
+    public boolean isEmailTaken(String email) {
+        Session session = entityManagerFactory.unwrap(SessionFactory.class).openSession();
+        List<User> users = session.createQuery("from User u where u.email='"+email+"'").getResultList();
+        session.close();
+
+        if(users.isEmpty()) return false;
+        return true;
+    }
+
+    @Override
     public List<User> getUsers() {
         Session session = entityManagerFactory.unwrap(SessionFactory.class).openSession();
         List<User> users = session.createQuery("from User").getResultList();

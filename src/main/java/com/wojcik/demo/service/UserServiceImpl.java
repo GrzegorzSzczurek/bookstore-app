@@ -28,6 +28,24 @@ public class UserServiceImpl implements UserService {
 
     @Override
     @Transactional
+    public User get(String username) {
+        return userDAO.get(username);
+    }
+
+    @Override
+    @Transactional
+    public boolean isUsernameTaken(String username) {
+        return userDAO.isUsernameTaken(username);
+    }
+
+    @Override
+    @Transactional
+    public boolean isEmailTaken(String email) {
+        return userDAO.isEmailTaken(email);
+    }
+
+    @Override
+    @Transactional
     public List<User> getUsers() {
         return userDAO.getUsers();
     }

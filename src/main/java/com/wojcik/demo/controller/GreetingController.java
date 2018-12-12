@@ -29,15 +29,13 @@ public class GreetingController {
     }
 
     @RequestMapping("/process")
-    public String process(@ModelAttribute("user") User user, Model model) {
+    public ModelAndView process(@ModelAttribute("user") User user) {
 
         user = userService.get(user.getUsername(), user.getPassword());
 
-        model.addAttribute("loggedUser", user);
+        if(user == null) return new ModelAndView("index", "user", new User());
 
-        if(user == null) return "index";
-
-        return "logged-in";
+        return new ModelAndView("logged-in", "user", user);
     }
 
     @RequestMapping("/registerForm")
@@ -52,7 +50,9 @@ public class GreetingController {
 
         model.addAttribute("result", result);
 
-        if (result.hasErrors()) {
+        if (result.hasErrors()
+                || userService.isUsernameTaken(user.getUsername())
+                || userService.isEmailTaken(user.getEmail())) {
             return "register";
         }
 
