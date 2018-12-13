@@ -43,7 +43,7 @@ public class DemoApplicationTests {
         User user = new User();
         user.setLastName("Wójcik");
 
-        Assert.assertTrue(user.getLastName().equals("Wójcik"));
+        Assert.assertTrue(user.getLastName().equals("Wojcik"));
     }
 
 }
