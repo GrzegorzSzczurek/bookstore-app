@@ -41,11 +41,16 @@ public class User {
     @Size(min = 6, message = "min 6 chars")
     private String password;
 
-    public User() {}
+    @Column
+    private boolean admin;
+
+    public User() { this.admin = false; }
 
     public User(String username, String password) {
         this.username = username;
         this.password = password;
+
+        this.admin = false;
     }
 
     public User(String firstName, String lastName, @Email String email, String username, String password) {
@@ -54,6 +59,8 @@ public class User {
         this.email = email;
         this.username = username;
         this.password = password;
+
+        this.admin = false;
     }
 
     public int getId() {
@@ -104,6 +111,14 @@ public class User {
         this.email = email;
     }
 
+    public boolean isAdmin() {
+        return this.admin;
+    }
+
+    public void setAdmin(boolean admin) {
+        this.admin = admin;
+    }
+
     @Override
     public String toString() {
         return "User{" +
@@ -113,6 +128,7 @@ public class User {
                 ", email='" + email + '\'' +
                 ", username='" + username + '\'' +
                 ", password='" + password + '\'' +
+                ", admin=" + admin +
                 '}';
     }
 }

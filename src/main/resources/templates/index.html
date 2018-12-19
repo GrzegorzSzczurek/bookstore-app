@@ -13,7 +13,7 @@
     <h4>Don't have an account? <a href="/registerForm">Register here</a></h4>
     <h4>Log in</h4>
 
-    <form action="#" th:action="@{/process}" th:object="${user}" method="post">
+    <form action="#" th:action="@{/home}" th:object="${user}" method="post">
 
         <input type="text"     th:field="*{username}" placeholder="Username" > <br><br>
         <input type="password" th:field="*{password}" placeholder="Password" > <br><br>
