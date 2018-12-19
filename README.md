@@ -2,8 +2,7 @@ Software Engineering - project for studies
 
 BOOKSTORE APP
 
-Version 0.2.1
+Version 0.2
 
-- Added surefire plugin
-- Test reports are creating in target directory, ignored in .gitignore
-- ...so I must change reports output destination
+- Administration pane
+  - Admin can search, add, delete and update books
