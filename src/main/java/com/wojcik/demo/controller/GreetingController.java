@@ -88,26 +88,6 @@ public class GreetingController {
         return "register-done";
     }
 
-    @RequestMapping("/showUsers")
-    public String showUsers(Model model) {
-
-        List<User> users = userService.getUsers();
-
-        model.addAttribute("users", users);
-
-        return "show-users";
-    }
-
-
-
-
-
-
-
-
-
-
-
 
 
 

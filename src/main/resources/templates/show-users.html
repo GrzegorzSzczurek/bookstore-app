@@ -9,11 +9,25 @@
 
     <hr><br>
 
-    <p th:each="user : ${users}"
-        th:text="${user.toString()}"/>
+    <!--<p th:each="user : ${users}"-->
+       <!--th:text="${user.toString()}"/>-->
+
+    <table width="75%" border="1px solid black">
+        <th:block th:each="user : ${users}">
+            <tr>
+                <td><p th:text="${user.toString()}">User</p></td>
+                <td>
+                    <a th:id="${#ids.seq('user')}"
+                       th:text="Remove"
+                       th:href="@{http://localhost:8081/admin/remove-user(userId=${user.getId()})}">Remove
+                    </a>
+                </td>
+            </tr>
+        </th:block>
+    </table>
 
     <br><hr><br>
 
-    <a href="/">Back</a>
+    <a href="/admin/">Back</a>
 </body>
 </html>

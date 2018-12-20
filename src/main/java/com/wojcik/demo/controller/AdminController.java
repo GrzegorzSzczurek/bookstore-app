@@ -3,6 +3,7 @@ package com.wojcik.demo.controller;
 import com.wojcik.demo.entity.Book;
 import com.wojcik.demo.entity.User;
 import com.wojcik.demo.service.BookService;
+import com.wojcik.demo.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.StringTrimmerEditor;
 import org.springframework.stereotype.Controller;
@@ -22,6 +23,9 @@ public class AdminController {
 
     @Autowired
     private BookService bookService;
+
+    @Autowired
+    private UserService userService;
 
     @RequestMapping("/")
     public ModelAndView show(@ModelAttribute("user") User user, HttpSession session) {
@@ -92,6 +96,25 @@ public class AdminController {
 
         return "redirect:/admin/";
     }
+
+    @RequestMapping("/showUsers")
+    public String showUsers(Model model) {
+
+        List<User> users = userService.getUsers();
+
+        model.addAttribute("users", users);
+
+        return "show-users";
+    }
+
+    @GetMapping("/remove-user")
+    public String removeUser(@RequestParam("userId") int userId) {
+
+        userService.remove(userId);
+
+        return "redirect:/admin/showUsers";
+    }
+
 
     @InitBinder
     public void initBinder(WebDataBinder dataBinder) {
