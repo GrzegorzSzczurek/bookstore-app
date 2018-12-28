@@ -32,7 +32,7 @@ public class AdminController {
 
         user = (User) session.getAttribute("user-session");
 
-        if(user == null) return new ModelAndView("redirect:/home", "user", new User());
+        if(user == null || !user.isAdmin()) return new ModelAndView("redirect:/home", "user", new User());
 
         List<Book> books = bookService.getBooks();
 
