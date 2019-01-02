@@ -62,7 +62,7 @@ public class GreetingController {
             return new ModelAndView("redirect:/admin/");
         }
 
-        return new ModelAndView("logged-in", "user", user);
+        return new ModelAndView("redirect:/user/");
     }
 
     @RequestMapping("/registerForm")
@@ -88,9 +88,13 @@ public class GreetingController {
         return "register-done";
     }
 
+    @RequestMapping("/logout")
+    public String logout(HttpSession session) {
 
+        session.removeAttribute("purchase-session");
 
-
+        return "redirect:/";
+    }
 
     @InitBinder
     public void initBinder(WebDataBinder dataBinder) {

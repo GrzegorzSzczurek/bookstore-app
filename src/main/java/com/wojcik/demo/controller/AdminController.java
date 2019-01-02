@@ -115,7 +115,6 @@ public class AdminController {
         return "redirect:/admin/showUsers";
     }
 
-
     @InitBinder
     public void initBinder(WebDataBinder dataBinder) {
         StringTrimmerEditor stringTrimmerEditor = new StringTrimmerEditor(true);

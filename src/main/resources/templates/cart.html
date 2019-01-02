@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Bookstore | Cart</title>
+</head>
+<body>
+
+    <h1>Bookstore | Your cart</h1>
+
+    <hr>
+
+    <p><a href="/user/purchase">Purchase books</a> | <a href="/user/">Back to store</a></p>
+
+    <hr><br>
+
+    <table width="75%" border="1px solid black">
+        <th:block th:each="details : ${purchase.getPurchaseDetails()}">
+            <tr>
+                <td><p th:text="${details.getBook().toString()}" /></td>
+            </tr>
+        </th:block>
+    </table><br>
+
+</body>
+</html>

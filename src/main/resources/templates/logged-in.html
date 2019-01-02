@@ -2,20 +2,36 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Bookstore | Authorization</title>
+    <title>Bookstore | Home</title>
 </head>
 <body>
 
-    <h1>User logged in</h1>
+    <h1 th:text="'Bookstore | Hello, ' + ${user.getFirstName()}">Bookstore</h1>
 
     <hr>
 
-    <p th:text="'User: ' + ${user.getUsername()} + ' logged in. '" />
-    <p th:text="'ID: ' + ${user.getId()} + '. '" />
+    <p>You successfully logged in | <a href="/logout">Log out</a></p>
+    <!--<p th:text="'ID: ' + ${user.getId()} + '. '" />-->
+
+    <p>Your cart: <span th:text="${purchase.getPurchaseDetails().size()}"/> items | <a href="/user/view-cart">View cart</a></p>
 
     <hr><br>
 
-    <a href="/">Log out</a>
+    <table width="75%" border="1px solid black">
+        <th:block th:each="book : ${books}">
+            <tr>
+                <td><p th:text="${book.toString()}">Book</p></td>
+                <td>
+                    <a th:id="${#ids.seq('book')}"
+                       th:text="'Add'"
+                       th:href="@{http://localhost:8081/user/add-to-cart(bookId=${book.getId()})}">Add
+                    </a>
+                </td>
+            </tr>
+        </th:block>
+    </table><br>
+
+    <hr>
 
 </body>
 </html>

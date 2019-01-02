@@ -2,12 +2,11 @@ package com.wojcik.demo.entity;
 
 import javax.persistence.*;
 import javax.validation.constraints.Max;
-import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
-import java.time.LocalDate;
-import java.util.Date;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table
@@ -35,6 +34,9 @@ public class Book implements Serializable {
     @Column
     private String description;
 
+    @OneToMany(mappedBy = "book")
+    private List<PurchaseDetails> purchaseDetailsList;
+
     public Book() {
     }
 
@@ -48,6 +50,16 @@ public class Book implements Serializable {
         this.title = title;
         this.year = year;
         this.description = description;
+    }
+
+    public void addDetails(PurchaseDetails details) {
+
+        if(purchaseDetailsList.isEmpty())
+            purchaseDetailsList = new ArrayList<PurchaseDetails>();
+
+        purchaseDetailsList.add(details);
+
+        details.setBook(this);
     }
 
     public int getId() {
@@ -88,6 +100,14 @@ public class Book implements Serializable {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public List<PurchaseDetails> getPurchaseDetailsList() {
+        return purchaseDetailsList;
+    }
+
+    public void setPurchaseDetailsList(List<PurchaseDetails> purchaseDetailsList) {
+        this.purchaseDetailsList = purchaseDetailsList;
     }
 
     @Override

@@ -6,6 +6,8 @@ import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table
@@ -44,6 +46,9 @@ public class User {
     @Column
     private boolean admin;
 
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    private List<Purchase> purchases;
+
     public User() { this.admin = false; }
 
     public User(String username, String password) {
@@ -61,6 +66,16 @@ public class User {
         this.password = password;
 
         this.admin = false;
+    }
+
+    public void addPurchase(Purchase purchase) {
+
+        if(purchases.isEmpty())
+            purchases = new ArrayList<Purchase>();
+
+        purchases.add(purchase);
+
+        purchase.setUser(this);
     }
 
     public int getId() {
@@ -117,6 +132,14 @@ public class User {
 
     public void setAdmin(boolean admin) {
         this.admin = admin;
+    }
+
+    public List<Purchase> getPurchases() {
+        return purchases;
+    }
+
+    public void setPurchases(List<Purchase> purchases) {
+        this.purchases = purchases;
     }
 
     @Override
