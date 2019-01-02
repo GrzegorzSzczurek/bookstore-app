@@ -10,14 +10,22 @@
 
     <hr>
 
-    <p><a href="/user/purchase">Purchase books</a> | <a href="/user/">Back to store</a></p>
+    <p><a th:if="${purchase.getPurchaseDetails().size() > 0}" href="/user/purchase">Purchase books | </a> <a href="/user/">Back to store</a></p>
 
     <hr><br>
 
-    <table width="75%" border="1px solid black">
+    <table th:if="${purchase.getPurchaseDetails().size() > 0}" width="75%" border="1px solid black">
         <th:block th:each="details : ${purchase.getPurchaseDetails()}">
             <tr>
                 <td><p th:text="${details.getBook().toString()}" /></td>
+                <!--<td><p th:text="${purchase.getPurchaseDetails().indexOf(details)}" /></td>-->
+
+                <td>
+                    <a th:id="${#ids.seq('details')}"
+                       th:text="Remove"
+                       th:href="@{http://localhost:8081/user/remove-from-cart(details=${purchase.getPurchaseDetails().indexOf(details)})}">Remove
+                    </a>
+                </td>
             </tr>
         </th:block>
     </table><br>

@@ -1,5 +1,6 @@
 package com.wojcik.demo.entity;
 
+import org.hibernate.annotations.Cascade;
 import org.springframework.stereotype.Service;
 
 import javax.persistence.*;

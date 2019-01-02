@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
 import java.util.Date;
 import java.util.List;
 
@@ -67,6 +68,16 @@ public class UserController {
         session.setAttribute("purchase-session", purchase);
 
         return new ModelAndView("redirect:/user/");
+    }
+
+    @RequestMapping("/remove-from-cart")
+    public String removeFromCart(@RequestParam("details") int place, HttpSession session) {
+
+        Purchase purchase = (Purchase) session.getAttribute("purchase-session");
+
+        purchase.removeDetails(place);
+
+        return "redirect:/user/view-cart";
     }
 
     @RequestMapping("/view-cart")

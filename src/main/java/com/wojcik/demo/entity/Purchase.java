@@ -1,5 +1,7 @@
 package com.wojcik.demo.entity;
 
+import org.hibernate.annotations.Cascade;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.Date;
@@ -47,6 +49,13 @@ public class Purchase {
         purchaseDetailsList.add(details);
 
         details.setPurchase(this);
+    }
+
+    public void removeDetails(int id) {
+
+        if(!purchaseDetailsList.isEmpty())
+            purchaseDetailsList.remove(id);
+
     }
 
     public int getId() {
