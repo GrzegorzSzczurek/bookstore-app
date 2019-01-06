@@ -17,13 +17,13 @@ public class User {
     private int id;
 
     @Column
-    @Size(min=1, max=30)
+    @Size(min = 1, max = 30)
     @NotNull(message = "required")
     private String firstName;
 
     @Column
     @NotNull(message = "required")
-    @Size(min=1, max=30)
+    @Size(min = 1, max = 30)
     private String lastName;
 
     @Column
@@ -32,8 +32,8 @@ public class User {
     private String email;
 
     @Column(unique = true)
+    @Size(min = 1, max = 24)
     @NotNull(message = "required")
-    @Size(min=1, max=24)
     private String username;
 
     @Column
@@ -44,7 +44,9 @@ public class User {
     @Column
     private boolean admin;
 
-    public User() { this.admin = false; }
+    public User() {
+        this.admin = false;
+    }
 
     public User(String username, String password) {
         this.username = username;

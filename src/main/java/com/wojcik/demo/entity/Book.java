@@ -2,12 +2,9 @@ package com.wojcik.demo.entity;
 
 import javax.persistence.*;
 import javax.validation.constraints.Max;
-import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
-import java.time.LocalDate;
-import java.util.Date;
 
 @Entity
 @Table
@@ -19,12 +16,12 @@ public class Book implements Serializable {
     private int id;
 
     @Column
-    @Size(min=1, max=150)
+    @Size(min = 1, max = 150)
     @NotNull(message = "required")
     private String author;
 
     @Column
-    @Size(min=1, max=200)
+    @Size(min = 1, max = 200)
     @NotNull(message = "required")
     private String title;
 
