@@ -174,6 +174,7 @@ public class UserController {
         ModelAndView modelAndView = new ModelAndView("bestsellers");
 
         modelAndView.addObject("bestsellers", bestsellers);
+        modelAndView.addObject("quantity", new Integer(1));
 
         return modelAndView;
     }

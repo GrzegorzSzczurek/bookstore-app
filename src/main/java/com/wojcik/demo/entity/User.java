@@ -145,6 +145,22 @@ public class User {
 
     @Override
     public String toString() {
+        String s = "";
+
+        if(this.isAdmin()) s = "Yes";
+        else s = "No";
+
+        return "ID: " + id +
+                " | First name: " + firstName +
+                " | Last name: " + lastName +
+                " | E-mail: " + email +
+                " | Username: " + username +
+                " | Password: " + password +
+                " | Is admin? " + s;
+    }
+
+//    @Override
+    public String toStringTechnical() {
         return "User{" +
                 "id=" + id +
                 ", firstName='" + firstName + '\'' +

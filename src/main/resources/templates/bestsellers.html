@@ -14,8 +14,27 @@
 
     <hr>
 
-    <ol th:each="book : ${bestsellers}">
-        <li><p th:text="${book.toString()}"/> </li>
-    </ol>
+    <table width="75%" border="1px solid black">
+        <th:block th:each="book, iter : ${bestsellers}">
+            <tr>
+                <td><p th:text="${iter.index+1}" /></td>
+                <form action="#" th:action="@{/user/add-to-cart}" method="get">
+                    <td><p th:text="${book.toString()}">Book</p></td>
+                    <td th:width="50px">
+                        <input type="number" min="1" max="10000" th:value="*{quantity}" th:name="quantity">
+                    </td>
+                    <td>
+                        <input type="number" th:value="${book.getId()}" th:name="bookId" hidden>
+                        <input type="submit" value="Add">
+                        <!--<a th:id="${#ids.seq('book')}"-->
+                        <!--th:text="'Add'"-->
+                        <!--th:href="@{http://localhost:8081/user/add-to-cart(bookId=${book.getId()},quantity=3)}">Add-->
+                        <!--</a>-->
+                    </td>
+                </form>
+            </tr>
+
+        </th:block>
+    </table><br>
 </body>
 </html>

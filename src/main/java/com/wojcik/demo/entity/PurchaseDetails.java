@@ -88,6 +88,11 @@ public class PurchaseDetails {
 
     @Override
     public String toString() {
+        return book + " x" + quantity + " = " + value + "$ ";
+    }
+
+//    @Override
+    public String toStringTechnical() {
         return "PurchaseDetails{" +
                 "id=" + id +
                 ", purchase=" + purchase.getId() +

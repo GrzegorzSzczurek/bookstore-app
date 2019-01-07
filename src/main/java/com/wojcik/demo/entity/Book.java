@@ -127,6 +127,11 @@ public class Book implements Serializable {
 
     @Override
     public String toString() {
+        return author + ": \"" + title + "\" (" + year + "). Price: " + price + "$";
+    }
+
+//    @Override
+    public String toStringTechnical() {
         return "Book{" +
                 "id=" + id +
                 ", author='" + author + '\'' +

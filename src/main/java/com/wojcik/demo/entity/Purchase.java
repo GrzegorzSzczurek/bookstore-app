@@ -173,6 +173,17 @@ public class Purchase {
 
     @Override
     public String toString() {
+        return "Purchase number: " + id +
+                ". Added on: " + date +
+                ". Total value: " + totalValue + "$" +
+                ". Payment method: " + paymentMethod +
+                ". Address: " + postalCode + " " + city + ", " + street + " " + homeNumber +
+                ". Book(s) purchased: " + purchaseDetailsList;
+
+    }
+
+//    @Override
+    public String toStringTechnical() {
         return "Purchase{" +
                 "id=" + id +
                 ", date=" + date +
