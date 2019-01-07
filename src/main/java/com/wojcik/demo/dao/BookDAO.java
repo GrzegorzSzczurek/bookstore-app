@@ -13,4 +13,6 @@ public interface BookDAO {
     Book getById(int id);
 
     List<Book> getBooks();
+
+    List<Book> getBestsellers();
 }

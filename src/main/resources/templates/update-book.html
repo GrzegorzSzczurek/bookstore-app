@@ -22,11 +22,14 @@
         <tr><td>Title:</td> <td><input type="text" th:field="*{title}" ></td>
             <td><span th:if="${#fields.hasErrors('title')}" th:errors="*{title}" th:errorclass="error">Error</span></td></tr>
 
-        <tr><td>Year:</td> <td><input type="number" th:field="*{year}" ></td>
+        <tr><td>Year:</td> <td><input type="number"  th:field="*{year}" ></td>
             <td><span th:if="${#fields.hasErrors('year')}" th:errors="*{year}" th:errorclass="error">Error</span></td></tr>
 
-        <tr><td>Description:</td> <td><input type="text" th:field="*{description}" ></td>
+        <tr><td>Description:</td> <td><input type="text" height="300px" th:field="*{description}" ></td>
             <td><span th:if="${#fields.hasErrors('description')}" th:errors="*{description}" th:errorclass="error">Error</span></td></tr>
+
+        <tr><td>Price:</td> <td><input type="number" th:step="0.1" th:field="*{price}" ></td>
+            <td><span th:if="${#fields.hasErrors('price')}" th:errors="*{price}" th:errorclass="error">Error</span></td></tr>
 
     </table>
 

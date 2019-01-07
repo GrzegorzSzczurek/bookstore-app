@@ -21,7 +21,7 @@
         <input type="text" th:field="*{lastName}" placeholder="Last name">
             <span th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}">Error</span><br><br>
 
-        <input type="email" th:field="*{email}" placeholder="E-mail">
+        <input type="text" th:field="*{email}" placeholder="E-mail">
             <span th:if="${#fields.hasErrors('email')}" th:errors="*{email}">Error</span><br><br>
 
         <input type="password" th:field="*{password}" placeholder="Password">

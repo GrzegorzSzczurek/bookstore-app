@@ -62,7 +62,7 @@ public class GreetingController {
             return new ModelAndView("redirect:/admin/");
         }
 
-        return new ModelAndView("logged-in", "user", user);
+        return new ModelAndView("redirect:/user/");
     }
 
     @RequestMapping("/registerForm")
@@ -88,29 +88,13 @@ public class GreetingController {
         return "register-done";
     }
 
-    @RequestMapping("/showUsers")
-    public String showUsers(Model model) {
+    @RequestMapping("/logout")
+    public String logout(HttpSession session) {
 
-        List<User> users = userService.getUsers();
+        session.removeAttribute("purchase-session");
 
-        model.addAttribute("users", users);
-
-        return "show-users";
+        return "redirect:/";
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
     @InitBinder
     public void initBinder(WebDataBinder dataBinder) {

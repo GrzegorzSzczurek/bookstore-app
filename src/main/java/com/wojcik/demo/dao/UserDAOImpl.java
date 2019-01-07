@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManagerFactory;
+import javax.persistence.Query;
 import java.util.List;
 
 @Repository
@@ -18,7 +19,21 @@ public class UserDAOImpl implements UserDAO {
     @Override
     public void save(User user) {
         Session session = entityManagerFactory.unwrap(SessionFactory.class).openSession();
-        session.save(user);
+        session.saveOrUpdate(user);
+        session.close();
+    }
+
+    @Override
+    public void remove(int userId) {
+        Session session = entityManagerFactory.unwrap(SessionFactory.class).openSession();
+
+        session.beginTransaction();
+
+        Query query = session.createQuery("delete from User where id = " + userId);
+        query.executeUpdate();
+
+        session.getTransaction().commit();
+
         session.close();
     }
 

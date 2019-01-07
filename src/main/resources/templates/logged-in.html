@@ -2,20 +2,73 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Bookstore | Authorization</title>
+    <title>Bookstore | Home</title>
 </head>
 <body>
 
-    <h1>User logged in</h1>
+    <h1 th:text="'Bookstore | Hello, ' + ${user.getFirstName()}">Bookstore</h1>
 
     <hr>
 
-    <p th:text="'User: ' + ${user.getUsername()} + ' logged in. '" />
-    <p th:text="'ID: ' + ${user.getId()} + '. '" />
+    <p>You successfully logged in | <a href="/logout">Log out</a></p>
+    <!--<p th:text="'ID: ' + ${user.getId()} + '. '" />-->
+
+    <hr>
+
+    <p><a href="/user/preview-purchases">Preview your purchases</a></p>
+
+    <hr>
+
+    <p>Your cart: <span th:text="${purchase.getPurchaseDetails().size()}"/> items | <a href="/user/view-cart">View cart</a></p>
+
+    <hr>
+
+    <p><a href="/user/view-bestsellers">Top 10 bestseller books</a></p>
 
     <hr><br>
 
-    <a href="/">Log out</a>
+    <!--<table width="75%" border="1px solid black">-->
+        <!--<th:block th:each="book : ${books}">-->
+            <!--<tr>-->
+                <!--<td><p th:text="${book.toString()}">Book</p></td>-->
+                <!--<td>-->
+                    <!--<input type="number" th:id="${quantity}" th:value="*{quantity}">-->
+                <!--</td>-->
+                <!--<td>-->
+                    <!--<a th:id="${#ids.seq('book')}"-->
+                       <!--th:text="'Add'"-->
+                       <!--th:href="@{http://localhost:8081/user/add-to-cart(bookId=${book.getId()},quantity=3)}">Add-->
+                    <!--</a>-->
+                <!--</td>-->
+            <!--</tr>-->
+        <!--</th:block>-->
+    <!--</table><br>-->
+
+    <table width="75%" border="1px solid black">
+        <th:block th:each="book : ${books}">
+            <tr>
+                <form action="#" th:action="@{/user/add-to-cart}" method="get">
+                    <td><p th:text="${book.toString()}">Book</p></td>
+                    <td th:width="50px">
+                        <input type="number" min="1" max="10000" th:value="*{quantity}" th:name="quantity">
+                    </td>
+                    <td>
+                        <input type="number" th:value="${book.getId()}" th:name="bookId" hidden>
+                        <input type="submit" value="Add">
+                        <!--<a th:id="${#ids.seq('book')}"-->
+                           <!--th:text="'Add'"-->
+                           <!--th:href="@{http://localhost:8081/user/add-to-cart(bookId=${book.getId()},quantity=3)}">Add-->
+                        <!--</a>-->
+                    </td>
+                </form>
+            </tr>
+
+        </th:block>
+    </table><br>
+
+
+
+    <hr>
 
 </body>
 </html>
