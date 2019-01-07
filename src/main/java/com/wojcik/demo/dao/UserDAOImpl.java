@@ -19,7 +19,7 @@ public class UserDAOImpl implements UserDAO {
     @Override
     public void save(User user) {
         Session session = entityManagerFactory.unwrap(SessionFactory.class).openSession();
-        session.save(user);
+        session.saveOrUpdate(user);
         session.close();
     }
 

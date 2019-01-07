@@ -30,7 +30,7 @@ public class User {
     private String lastName;
 
     @Column
-    @Email
+    @Email(message = "invalid e-mail")
     @NotNull(message = "required")
     private String email;
 

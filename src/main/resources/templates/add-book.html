@@ -24,6 +24,9 @@
         <input type="text" height="300px" th:field="*{description}" placeholder="Description">
         <span th:if="${#fields.hasErrors('description')}" th:errors="*{description}" th:errorclass="error">Error</span><br><br>
 
+        <input type="number" th:step="0.1" value="1" th:field="*{price}" placeholder="Price">
+        <span th:if="${#fields.hasErrors('price')}" th:errors="*{price}" th:errorclass="error">Error</span><br><br>
+
         <input type="submit" value="Submit"> <input type="reset" value="Reset">
     </form>
 

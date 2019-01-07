@@ -3,6 +3,9 @@ package com.wojcik.demo.entity;
 import org.hibernate.annotations.Cascade;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -26,7 +29,32 @@ public class Purchase {
     @Column
     private float totalValue;
 
-    @OneToMany(mappedBy = "purchase", cascade = CascadeType.ALL)
+    @Column
+    @NotNull(message = "required")
+    private String paymentMethod;
+
+    @Column
+    @Pattern(regexp = "(?i)^[a-z0-9][a-z0-9\\- ]{0,10}[a-z0-9]$", message = "invalid postal code")
+    @Size(min = 1, max = 15)
+    @NotNull(message = "required")
+    private String postalCode;
+
+    @Column
+    @Size(min = 1, max = 255)
+    @NotNull(message = "required")
+    private String city;
+
+    @Column
+    @Size(min = 1, max = 255)
+    @NotNull(message = "required")
+    private String street;
+
+    @Column
+    @Size(min = 1, max = 15)
+    @NotNull(message = "required")
+    private String homeNumber;
+
+    @OneToMany(mappedBy = "purchase", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<PurchaseDetails> purchaseDetailsList;
 
     public Purchase() {
@@ -48,14 +76,19 @@ public class Purchase {
 
         purchaseDetailsList.add(details);
 
+        this.totalValue += details.getValue();
+
         details.setPurchase(this);
     }
 
     public void removeDetails(int id) {
 
-        if(!purchaseDetailsList.isEmpty())
-            purchaseDetailsList.remove(id);
+        if(!purchaseDetailsList.isEmpty()) {
 
+            this.totalValue -= purchaseDetailsList.get(id).getValue();
+
+            purchaseDetailsList.remove(id);
+        }
     }
 
     public int getId() {
@@ -90,6 +123,46 @@ public class Purchase {
         this.totalValue = totalValue;
     }
 
+    public String getPaymentMethod() {
+        return paymentMethod;
+    }
+
+    public void setPaymentMethod(String paymentMethod) {
+        this.paymentMethod = paymentMethod;
+    }
+
+    public String getPostalCode() {
+        return postalCode;
+    }
+
+    public void setPostalCode(String postalCode) {
+        this.postalCode = postalCode;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public String getStreet() {
+        return street;
+    }
+
+    public void setStreet(String street) {
+        this.street = street;
+    }
+
+    public String getHomeNumber() {
+        return homeNumber;
+    }
+
+    public void setHomeNumber(String homeNumber) {
+        this.homeNumber = homeNumber;
+    }
+
     public List<PurchaseDetails> getPurchaseDetails() {
         return purchaseDetailsList;
     }
@@ -102,9 +175,14 @@ public class Purchase {
     public String toString() {
         return "Purchase{" +
                 "id=" + id +
-                ", user=" + user +
                 ", date=" + date +
                 ", totalValue=" + totalValue +
+                ", paymentMethod='" + paymentMethod + '\'' +
+                ", postalCode='" + postalCode + '\'' +
+                ", city='" + city + '\'' +
+                ", street='" + street + '\'' +
+                ", homeNumber='" + homeNumber + '\'' +
+                ", purchaseDetails='" + purchaseDetailsList + '\'' +
                 '}';
     }
 }

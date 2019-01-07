@@ -1,5 +1,7 @@
 package com.wojcik.demo.entity;
 
+import org.springframework.beans.factory.annotation.Value;
+
 import javax.persistence.*;
 
 @Entity
@@ -20,7 +22,7 @@ public class PurchaseDetails {
     private Book book;
 
     @Column
-    private int quantity;
+    private int quantity = 1;
 
     @Column
     private float value;
@@ -36,11 +38,12 @@ public class PurchaseDetails {
         this.book = book;
     }
 
-    public PurchaseDetails(Purchase purchase, Book book, int quantity, float value) {
+    public PurchaseDetails(Purchase purchase, Book book, int quantity) {
         this.purchase = purchase;
         this.book = book;
         this.quantity = quantity;
-        this.value = value;
+
+        this.value = this.quantity * book.getPrice();
     }
 
     public int getId() {

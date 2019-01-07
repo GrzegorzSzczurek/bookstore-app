@@ -57,4 +57,13 @@ public class BookDAOImpl implements BookDAO {
 
         return books;
     }
+
+    @Override
+    public List<Book> getBestsellers() {
+        Session session = entityManagerFactory.unwrap(SessionFactory.class).openSession();
+        List<Book> books = session.createQuery("from Book b where b.id in (select book.id, sum(quantity) from PurchaseDetails group by book.id)").getResultList();
+        session.close();
+
+        return books;
+    }
 }

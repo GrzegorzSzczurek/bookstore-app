@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Bookstore | Bestsellers</title>
+</head>
+<body>
+
+    <h1>Bookstore | Bestsellers</h1>
+
+    <hr>
+
+    <p><a href="/user/">Go to home page</a></p>
+
+    <hr>
+
+    <ol th:each="book : ${bestsellers}">
+        <li><p th:text="${book.toString()}"/> </li>
+    </ol>
+</body>
+</html>

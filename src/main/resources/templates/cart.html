@@ -10,16 +10,19 @@
 
     <hr>
 
-    <p><a th:if="${purchase.getPurchaseDetails().size() > 0}" href="/user/purchase">Purchase books | </a> <a href="/user/">Back to store</a></p>
+    <p><a th:if="${purchase.getPurchaseDetails().size() > 0}" href="/user/details">Purchase books | </a> <a href="/user/">Back to store</a></p>
 
     <hr><br>
+
+    <p th:if="${purchase.getPurchaseDetails().size() > 0}" th:text="'Total value: ' + ${purchase.getTotalValue()}" />
 
     <table th:if="${purchase.getPurchaseDetails().size() > 0}" width="75%" border="1px solid black">
         <th:block th:each="details : ${purchase.getPurchaseDetails()}">
             <tr>
                 <td><p th:text="${details.getBook().toString()}" /></td>
                 <!--<td><p th:text="${purchase.getPurchaseDetails().indexOf(details)}" /></td>-->
-
+                <td><p th:text="${details.getQuantity()}" /> </td>
+                <td><p th:text="${details.getValue()}" /></td>
                 <td>
                     <a th:id="${#ids.seq('details')}"
                        th:text="Remove"

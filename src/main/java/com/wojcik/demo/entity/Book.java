@@ -2,6 +2,7 @@ package com.wojcik.demo.entity;
 
 import javax.persistence.*;
 import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
@@ -34,6 +35,11 @@ public class Book implements Serializable {
     @Column
     private String description;
 
+    @Column
+    @Min(1)
+    @Max(10000)
+    private float price;
+
     @OneToMany(mappedBy = "book")
     private List<PurchaseDetails> purchaseDetailsList;
 
@@ -45,11 +51,12 @@ public class Book implements Serializable {
         this.title = title;
     }
 
-    public Book(String author, String title, int year, String description) {
+    public Book(String author, String title, int year, String description, float price) {
         this.author = author;
         this.title = title;
         this.year = year;
         this.description = description;
+        this.price = price;
     }
 
     public void addDetails(PurchaseDetails details) {
@@ -102,6 +109,14 @@ public class Book implements Serializable {
         this.description = description;
     }
 
+    public float getPrice() {
+        return price;
+    }
+
+    public void setPrice(float price) {
+        this.price = price;
+    }
+
     public List<PurchaseDetails> getPurchaseDetailsList() {
         return purchaseDetailsList;
     }
@@ -118,6 +133,7 @@ public class Book implements Serializable {
                 ", title='" + title + '\'' +
                 ", year=" + year +
                 ", description='" + description + '\'' +
+                ", price='" + price + '\'' +
                 '}';
     }
 }

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Bookstore | Details</title>
+</head>
+<body>
+
+    <h1>Bookstore | Details</h1>
+
+    <hr>
+
+    <p>Your address: </p>
+
+    <form action="#" th:action="@{/user/details/process}" th:object="${purchase}" method="post">
+
+        <input type="text" th:field="*{postalCode}" placeholder="Postal code">
+        <span th:if="${#fields.hasErrors('postalCode')}" th:errors="*{postalCode}" th:errorclass="error">Error</span><br><br>
+
+        <input type="text" th:field="*{city}" placeholder="City">
+        <span th:if="${#fields.hasErrors('city')}" th:errors="*{city}" th:errorclass="error">Error</span><br><br>
+
+        <input type="text" th:field="*{street}" placeholder="Street">
+        <span th:if="${#fields.hasErrors('street')}" th:errors="*{street}" th:errorclass="error">Error</span><br><br>
+
+        <input type="text" th:field="*{homeNumber}" placeholder="Home number">
+        <span th:if="${#fields.hasErrors('homeNumber')}" th:errors="*{homeNumber}" th:errorclass="error">Error</span><br><br>
+
+        Choose payment method: <span th:if="${#fields.hasErrors('paymentMethod')}" th:errors="*{paymentMethod}" th:errorclass="error">Error</span><br>
+        <label><input type="radio" th:field="*{paymentMethod}" value="On delivery" > On delivery</label><br>
+        <label><input type="radio" th:field="*{paymentMethod}" value="On-line payment"> On-line payment</label><br><br>
+
+        <input type="submit" value="Purchase">  <input type="reset" value="Reset">
+
+    </form>
+
+    <hr>
+
+    <p><a href="/user/view-cart">Cancel</a></p>
+</body>
+
+</html>
