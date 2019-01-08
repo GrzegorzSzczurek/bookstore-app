@@ -3,7 +3,6 @@ package com.wojcik.demo;
 import com.wojcik.demo.entity.Book;
 import com.wojcik.demo.entity.User;
 import com.wojcik.demo.service.UserService;
-import com.wojcik.demo.service.UserServiceImpl;
 import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -66,7 +65,7 @@ public class DemoApplicationTests {
 
     @Test
     public void authorIsNull(){
-        Book book = new Book(null, "Harry Potter", 2000, "Opis");
+        Book book = new Book(null, "Harry Potter", 2000, "Opis", 24.00f);
 
         Set<ConstraintViolation<Book>> constraintViolations =
                 validator.validate(book);
@@ -79,8 +78,8 @@ public class DemoApplicationTests {
     }
 
     @Test
-    public void authorIsEmty(){
-        Book book = new Book("", "Harry Potter", 2000, "Opis");
+    public void authorIsEmpty(){
+        Book book = new Book("", "Harry Potter", 2000, "Opis", 24.00f);
 
         Set<ConstraintViolation<Book>> constraintViolations =
                 validator.validate(book);
@@ -94,7 +93,7 @@ public class DemoApplicationTests {
 
     @Test
     public void titleIsNull(){
-        Book book = new Book("J. K. Rowling", null, 2000, "Opis");
+        Book book = new Book("J. K. Rowling", null, 2000, "Opis", 24.00f);
 
         Set<ConstraintViolation<Book>> constraintViolations =
                 validator.validate(book);
@@ -107,8 +106,8 @@ public class DemoApplicationTests {
     }
 
     @Test
-    public void titleIsEmty(){
-        Book book = new Book("J. K. Rowling", "", 2000, "Opis");
+    public void titleIsEmpty(){
+        Book book = new Book("J. K. Rowling", "", 2000, "Opis", 24.00f);
 
         Set<ConstraintViolation<Book>> constraintViolations =
                 validator.validate(book);
@@ -116,6 +115,20 @@ public class DemoApplicationTests {
         assertEquals( 1, constraintViolations.size() );
         assertEquals(
                 "size must be between 1 and 200",
+                constraintViolations.iterator().next().getMessage()
+        );
+    }
+
+    @Test
+    public void priceCostsZero(){
+        Book book = new Book("J. K. Rowling", "Harry Potter", 2000, "Opis", 0);
+
+        Set<ConstraintViolation<Book>> constraintViolations =
+                validator.validate(book);
+
+        assertEquals( 1, constraintViolations.size() );
+        assertEquals(
+                "size must be between 1 and 10000",
                 constraintViolations.iterator().next().getMessage()
         );
     }

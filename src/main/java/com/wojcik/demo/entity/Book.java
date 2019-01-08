@@ -2,6 +2,7 @@ package com.wojcik.demo.entity;
 
 import javax.persistence.*;
 import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
@@ -58,6 +59,17 @@ public class Book implements Serializable {
         this.price = price;
     }
 
+    public Book(int id, String author, String title, int year, String description, float price) {
+        this.id = id;
+        this.author = author;
+        this.title = title;
+        this.year = year;
+        this.description = description;
+        this.price = price;
+    }
+
+
+
     public void addDetails(PurchaseDetails details) {
 
         if(purchaseDetailsList.isEmpty())
@@ -66,6 +78,14 @@ public class Book implements Serializable {
         purchaseDetailsList.add(details);
 
         details.setBook(this);
+    }
+
+    public Book(int id, String author, String title, int year, String description) {
+        this.id = id;
+        this.author = author;
+        this.title = title;
+        this.year = year;
+        this.description = description;
     }
 
     public int getId() {
