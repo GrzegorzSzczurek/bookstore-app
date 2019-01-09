@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface UserDAO {
 
-    void save(User user);
+    User save(User user);
 
     void remove(int userId);
 
@@ -14,6 +14,7 @@ public interface UserDAO {
     User get(String username);
 
     boolean isUsernameTaken(String username);
+
     boolean isEmailTaken(String email);
 
     List<User> getUsers();

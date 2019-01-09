@@ -4,6 +4,6 @@ import com.wojcik.demo.entity.PurchaseDetails;
 
 public interface PurchaseDetailsService {
 
-    void save(PurchaseDetails purchaseDetails);
+    PurchaseDetails save(PurchaseDetails purchaseDetails);
 
 }

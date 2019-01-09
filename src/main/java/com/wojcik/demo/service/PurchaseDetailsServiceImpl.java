@@ -12,7 +12,8 @@ public class PurchaseDetailsServiceImpl implements PurchaseDetailsService {
     private PurchaseDetailsDAO purchaseDetailsDAO;
 
     @Override
-    public void save(PurchaseDetails purchaseDetails) {
+    public PurchaseDetails save(PurchaseDetails purchaseDetails) {
         purchaseDetailsDAO.save(purchaseDetails);
+        return  purchaseDetails;
     }
 }

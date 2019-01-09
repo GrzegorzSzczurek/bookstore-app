@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface PurchaseDAO {
 
-    void save(Purchase purchase);
+    Purchase save(Purchase purchase);
 
     List<Purchase> getPurchasesByUser(User user);
 }

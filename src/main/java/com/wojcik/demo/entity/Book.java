@@ -1,5 +1,7 @@
 package com.wojcik.demo.entity;
 
+import org.hibernate.annotations.Cascade;
+
 import javax.persistence.*;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
@@ -19,12 +21,12 @@ public class Book implements Serializable {
     private int id;
 
     @Column
-    @Size(min=1, max=150)
+    @Size(min = 1, max = 150)
     @NotNull(message = "required")
     private String author;
 
     @Column
-    @Size(min=1, max=200)
+    @Size(min = 1, max = 200)
     @NotNull(message = "required")
     private String title;
 
@@ -40,7 +42,7 @@ public class Book implements Serializable {
     @Max(10000)
     private float price;
 
-    @OneToMany(mappedBy = "book")
+    @OneToMany(mappedBy = "book", cascade = CascadeType.REMOVE, orphanRemoval = true)
     private List<PurchaseDetails> purchaseDetailsList;
 
     public Book() {
@@ -59,6 +61,17 @@ public class Book implements Serializable {
         this.price = price;
     }
 
+    public Book(int id, String author, String title, int year, String description, float price) {
+        this.id = id;
+        this.author = author;
+        this.title = title;
+        this.year = year;
+        this.description = description;
+        this.price = price;
+    }
+
+
+
     public void addDetails(PurchaseDetails details) {
 
         if(purchaseDetailsList.isEmpty())
@@ -67,6 +80,14 @@ public class Book implements Serializable {
         purchaseDetailsList.add(details);
 
         details.setBook(this);
+    }
+
+    public Book(int id, String author, String title, int year, String description) {
+        this.id = id;
+        this.author = author;
+        this.title = title;
+        this.year = year;
+        this.description = description;
     }
 
     public int getId() {

@@ -17,8 +17,9 @@ public class PurchaseServiceImpl implements PurchaseService {
 
     @Override
     @Transactional
-    public void save(Purchase purchase) {
+    public Purchase save(Purchase purchase) {
         purchaseDAO.save(purchase);
+        return purchase;
     }
 
     @Override

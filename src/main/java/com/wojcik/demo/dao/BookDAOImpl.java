@@ -17,7 +17,7 @@ public class BookDAOImpl implements BookDAO {
     private EntityManagerFactory entityManagerFactory;
 
     @Override
-    public void save(Book book) {
+    public Book save(Book book) {
         Session session = entityManagerFactory.unwrap(SessionFactory.class).openSession();
 
         session.beginTransaction();
@@ -26,6 +26,8 @@ public class BookDAOImpl implements BookDAO {
 
         session.getTransaction().commit();
         session.close();
+
+        return book;
     }
 
     @Override
