@@ -2,16 +2,12 @@ package com.wojcik.demo;
 
 import com.wojcik.demo.entity.Book;
 import com.wojcik.demo.entity.User;
-import com.wojcik.demo.service.UserService;
-import com.wojcik.demo.service.UserServiceImpl;
 import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import javax.jws.soap.SOAPBinding;
 import javax.validation.ConstraintViolation;
 import javax.validation.Validation;
 import javax.validation.Validator;
