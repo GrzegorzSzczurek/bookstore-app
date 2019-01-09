@@ -3,18 +3,18 @@ package com.wojcik.demo;
 import com.wojcik.demo.dao.UserDAO;
 import com.wojcik.demo.entity.User;
 import com.wojcik.demo.service.UserServiceImpl;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 import static org.mockito.Mockito.when;
 
 public class UserServiceTests {
@@ -41,16 +41,16 @@ public class UserServiceTests {
     }
 
     @Test
-    void shouldSaveBook() {
+    void shouldSaveUser() {
         when(userRepository.save(user1)).thenReturn(user1);
         assertEquals(userRepository.save(user1), user1);
     }
 
     @Test
-    void shouldDeleteBookById() {
-        User user = new User(1, "Adam", "Nowak", "email@o2.pl", "nowaki", "mocnehaslo");
-        when(userRepository.get(user.getUsername())).thenReturn(user);
-        userService.remove(user.getId());
+    void shouldDeleteUserById() {
+        user1 = new User(1, "Adam", "Nowak", "email@o2.pl", "nowaki", "mocnehaslo");
+        when(userRepository.get(user1.getUsername())).thenReturn(user1);
+        userService.remove(user1.getId());
     }
 
     @Test

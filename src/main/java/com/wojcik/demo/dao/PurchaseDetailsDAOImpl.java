@@ -15,9 +15,10 @@ public class PurchaseDetailsDAOImpl implements PurchaseDetailsDAO {
     private EntityManagerFactory entityManagerFactory;
 
     @Override
-    public void save(PurchaseDetails purchaseDetails) {
+    public PurchaseDetails save(PurchaseDetails purchaseDetails) {
         Session session = entityManagerFactory.unwrap(SessionFactory.class).openSession();
         session.save(purchaseDetails);
         session.close();
+        return purchaseDetails;
     }
 }

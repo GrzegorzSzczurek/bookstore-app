@@ -1,7 +1,5 @@
 package com.wojcik.demo.entity;
 
-import org.hibernate.annotations.Cascade;
-
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
@@ -68,6 +66,16 @@ public class Purchase {
 
         this.totalValue = 0;
     }
+
+    public Purchase(int id, User user, Date date) {
+        this.id = id;
+        this.user = user;
+        this.date = date;
+
+        this.totalValue = 0;
+    }
+
+
 
     public void addDetails(PurchaseDetails details) {
 
