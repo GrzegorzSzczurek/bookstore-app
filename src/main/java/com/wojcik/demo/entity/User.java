@@ -47,7 +47,7 @@ public class User {
     @Column
     private boolean admin;
 
-    @OneToMany(mappedBy = "user", cascade = CascadeType.REMOVE)
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private List<Purchase> purchases;
 
     public User() { this.admin = false; }

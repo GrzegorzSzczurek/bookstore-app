@@ -52,7 +52,7 @@ public class Purchase {
     @NotNull(message = "required")
     private String homeNumber;
 
-    @OneToMany(mappedBy = "purchase", cascade = CascadeType.REMOVE, orphanRemoval = true, fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "purchase", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
     private List<PurchaseDetails> purchaseDetailsList;
 
     public Purchase() {

@@ -42,7 +42,7 @@ public class Book implements Serializable {
     @Max(10000)
     private float price;
 
-    @OneToMany(mappedBy = "book", cascade = CascadeType.REMOVE, orphanRemoval = true)
+    @OneToMany(mappedBy = "book", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<PurchaseDetails> purchaseDetailsList;
 
     public Book() {
