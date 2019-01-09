@@ -69,6 +69,17 @@ public class User {
         this.admin = false;
     }
 
+    public User(int id, String firstName, String lastName, @Email String email, String username, String password) {
+        this.id = id;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.username = username;
+        this.password = password;
+
+        this.admin = false;
+    }
+
     public void addPurchase(Purchase purchase) {
 
         if(purchases.isEmpty())

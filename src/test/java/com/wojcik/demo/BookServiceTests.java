@@ -52,8 +52,14 @@ public class BookServiceTests {
 
     @Test
     void getBooks(){
-        when(bookRepository.getBooks()).thenReturn(createBooks());
-        Assertions.assertEquals(createBooks(), bookService.getBooks());
+        List<Book> books = new ArrayList<>();
+        book1 = new Book(1, "J. K. Rowling", "Harry Potter", 1997, "Description", 24.0f);
+        book2 = new Book(2, "Andrzej Sapkowski", "Wiedźmin", 1994, "Description", 24.0f);
+        books.add(book1);
+        books.add(book2);
+
+        when(bookRepository.getBooks()).thenReturn(books);
+        Assertions.assertEquals(books, bookService.getBooks());
     }
 
     @Test
