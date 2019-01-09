@@ -1,8 +1,5 @@
 package com.wojcik.demo.entity;
 
-import org.hibernate.annotations.Cascade;
-import org.springframework.stereotype.Service;
-
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
@@ -36,7 +33,7 @@ public class User {
 
     @Column(unique = true)
     @NotNull(message = "required")
-    @Size(min=1, max=24)
+    @Size(min=1, max=30)
     private String username;
 
     @Column

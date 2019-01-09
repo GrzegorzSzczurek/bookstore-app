@@ -7,7 +7,6 @@ import com.wojcik.demo.entity.User;
 import com.wojcik.demo.service.BookService;
 import com.wojcik.demo.service.PurchaseService;
 import com.wojcik.demo.service.UserService;
-import org.dom4j.rule.Mode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.StringTrimmerEditor;
 import org.springframework.stereotype.Controller;

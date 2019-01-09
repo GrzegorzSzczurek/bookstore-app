@@ -1,7 +1,5 @@
 package com.wojcik.demo.entity;
 
-import org.hibernate.annotations.Cascade;
-
 import javax.persistence.*;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
