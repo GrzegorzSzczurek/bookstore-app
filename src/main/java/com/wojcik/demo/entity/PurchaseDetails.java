@@ -1,7 +1,8 @@
-package com.wojcik.bookstore.entities;
+package com.wojcik.demo.entity;
+
+import org.springframework.beans.factory.annotation.Value;
 
 import javax.persistence.*;
-import java.io.Serializable;
 
 @Entity
 @Table
@@ -12,25 +13,37 @@ public class PurchaseDetails {
     @Column
     private int id;
 
-    @ManyToOne(cascade = {CascadeType.DETACH, CascadeType.MERGE,
-                          CascadeType.PERSIST, CascadeType.REFRESH})
+    @ManyToOne
     @JoinColumn
     private Purchase purchase;
 
-    @ManyToOne(cascade = {CascadeType.DETACH, CascadeType.MERGE,
-            CascadeType.PERSIST, CascadeType.REFRESH})
+    @ManyToOne
     @JoinColumn
     private Book book;
 
     @Column
-    private int quantity;
+    private int quantity = 1;
+
+    @Column
+    private float value;
 
     public PurchaseDetails() {}
+
+    public PurchaseDetails(Book book) {
+        this.book = book;
+    }
+
+    public PurchaseDetails(Purchase purchase, Book book) {
+        this.purchase = purchase;
+        this.book = book;
+    }
 
     public PurchaseDetails(Purchase purchase, Book book, int quantity) {
         this.purchase = purchase;
         this.book = book;
         this.quantity = quantity;
+
+        this.value = this.quantity * book.getPrice();
     }
 
     public int getId() {
@@ -63,5 +76,29 @@ public class PurchaseDetails {
 
     public void setQuantity(int quantity) {
         this.quantity = quantity;
+    }
+
+    public float getValue() {
+        return value;
+    }
+
+    public void setValue(float value) {
+        this.value = value;
+    }
+
+    @Override
+    public String toString() {
+        return book + " x" + quantity + " = " + value + "$ ";
+    }
+
+//    @Override
+    public String toStringTechnical() {
+        return "PurchaseDetails{" +
+                "id=" + id +
+                ", purchase=" + purchase.getId() +
+                ", book=" + book.getId() +
+                ", quantity=" + quantity +
+                ", value=" + value +
+                '}';
     }
 }

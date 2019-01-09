@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Bookstore | Cart</title>
+</head>
+<body>
+
+    <h1>Bookstore | Your cart</h1>
+
+    <hr>
+
+    <p><a th:if="${purchase.getPurchaseDetails().size() > 0}" href="/user/details">Purchase books | </a> <a href="/user/">Back to store</a></p>
+
+    <hr><br>
+
+    <p th:if="${purchase.getPurchaseDetails().size() > 0}" th:text="'Total value: ' + ${purchase.getTotalValue()}" />
+
+    <table th:if="${purchase.getPurchaseDetails().size() > 0}" width="75%" border="1px solid black">
+        <th:block th:each="details : ${purchase.getPurchaseDetails()}">
+            <tr>
+                <td><p th:text="${details.getBook().toString()}" /></td>
+                <!--<td><p th:text="${purchase.getPurchaseDetails().indexOf(details)}" /></td>-->
+                <td><p th:text="${details.getQuantity()}" /> </td>
+                <td><p th:text="${details.getValue()}" /></td>
+                <td>
+                    <a th:id="${#ids.seq('details')}"
+                       th:text="Remove"
+                       th:href="@{http://localhost:8081/user/remove-from-cart(details=${purchase.getPurchaseDetails().indexOf(details)})}">Remove
+                    </a>
+                </td>
+            </tr>
+        </th:block>
+    </table><br>
+
+</body>
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Bookstore | Adding a new book</title>
+</head>
+<body>
+
+    <h1>Adding a new book</h1>
+
+    <hr><br>
+
+    <form action="#" th:action="@{/admin/add-book/process}" th:object="${book}" method="post">
+
+        <input type="text" th:field="*{author}" placeholder="Author">
+        <span th:if="${#fields.hasErrors('author')}" th:errors="*{author}" th:errorclass="error">Error</span><br><br>
+
+        <input type="text" th:field="*{title}" placeholder="Title">
+        <span th:if="${#fields.hasErrors('title')}" th:errors="*{title}" th:errorclass="error">Error</span><br><br>
+
+        <input type="number" value="2018" th:field="*{year}" placeholder="Year of publishment">
+        <span th:if="${#fields.hasErrors('year')}" th:errors="*{year}" th:errorclass="error">Error</span><br><br>
+
+        <input type="text" height="300px" th:field="*{description}" placeholder="Description">
+        <span th:if="${#fields.hasErrors('description')}" th:errors="*{description}" th:errorclass="error">Error</span><br><br>
+
+        <input type="number" th:step="0.1" value="1" th:field="*{price}" placeholder="Price">
+        <span th:if="${#fields.hasErrors('price')}" th:errors="*{price}" th:errorclass="error">Error</span><br><br>
+
+        <input type="submit" value="Submit"> <input type="reset" value="Reset">
+    </form>
+
+    <hr><br>
+
+    <a href="/admin/">Cancel</a>
+</body>
+</html>

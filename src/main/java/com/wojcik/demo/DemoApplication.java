@@ -1,12 +1,12 @@
-package com.wojcik.bookstore;
+package com.wojcik.demo;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class BookstoreApplication {
+public class DemoApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(BookstoreApplication.class, args);
+        SpringApplication.run(DemoApplication.class, args);
     }
 }

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Bookstore | Admin</title>
+</head>
+<body>
+
+    <h1>Administration</h1>
+
+    <hr>
+
+    <p th:text="'Admin: ' + ${user.getUsername()} + ' logged in.'" />
+    <p th:text="'ID: ' + ${user.getId()} + '. '" />
+
+    <hr>
+
+    <a href="/">Log out</a> | <a href="/user/">Go to store</a>
+
+    <hr>
+
+    <a href="/admin/showUsers">Show users</a>
+
+    <hr>
+
+    <a href="/admin/add-book">Add book</a>
+
+    <hr><br>
+
+    <!--<a th:each="book : ${books}"-->
+       <!--th:text="${book.toString()}"-->
+       <!--th:href="@{http://localhost:8081/admin/update-book(bookId=${book.getId()})}">Text</a>-->
+
+    <table width="75%" border="1px solid black">
+    <th:block th:each="book : ${books}">
+        <tr>
+            <td><p th:text="${book.toString()}">Book</p></td>
+            <td>
+                <a th:id="${#ids.seq('book')}"
+                   th:text="Update"
+                   th:href="@{http://localhost:8081/admin/update-book(bookId=${book.getId()})}">Update
+                </a>
+            </td>
+            <td>
+                <a th:id="${#ids.seq('book')}"
+                   th:text="Remove"
+                   th:href="@{http://localhost:8081/admin/remove-book(bookId=${book.getId()})}">Remove
+                </a>
+            </td>
+        </tr>
+    </th:block>
+    </table>
+
+</body>
+</html>

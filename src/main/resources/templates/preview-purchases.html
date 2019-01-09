@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Bookstore | Purchases</title>
+</head>
+<body>
+
+    <h1>Bookstore | Purchases</h1>
+
+    <hr>
+
+    <p><a href="/user/">Back to home page</a></p>
+
+    <hr>
+
+    <th:block th:each="purchase : ${purchases}">
+        <tr>
+            <td><p th:text="${purchase.toString()}">Purchase</p></td>
+        </tr>
+    </th:block>
+</body>
+</html>
