@@ -3,7 +3,6 @@ package com.wojcik.demo;
 import com.wojcik.demo.dao.UserDAO;
 import com.wojcik.demo.entity.User;
 import com.wojcik.demo.service.UserServiceImpl;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
@@ -37,7 +36,7 @@ public class UserServiceTests {
     @Test
     void getUserByUsername(){
         when(userRepository.get("nowaki")).thenReturn(user1);
-        Assertions.assertEquals(userService.get("nowaki").getUsername(), user1.getUsername());
+        assertEquals(userService.get("nowaki").getUsername(), user1.getUsername());
     }
 
     @Test
@@ -74,7 +73,7 @@ public class UserServiceTests {
         users.add(user2);
 
         when(userRepository.getUsers()).thenReturn(users);
-        Assertions.assertEquals(userService.getUsers(), users);
+        assertEquals(userService.getUsers(), users);
     }
 
 

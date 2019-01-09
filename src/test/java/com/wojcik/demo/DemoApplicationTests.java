@@ -3,14 +3,13 @@ package com.wojcik.demo;
 import com.wojcik.demo.entity.Book;
 import com.wojcik.demo.entity.User;
 import com.wojcik.demo.service.UserService;
+import com.wojcik.demo.service.UserServiceImpl;
 import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
-import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit4.SpringRunner;
 
+import javax.jws.soap.SOAPBinding;
 import javax.validation.ConstraintViolation;
 import javax.validation.Validation;
 import javax.validation.Validator;
@@ -19,12 +18,7 @@ import java.util.Set;
 
 import static org.junit.Assert.assertEquals;
 
-@RunWith(SpringRunner.class)
-@SpringBootTest
 public class DemoApplicationTests {
-
-    @Autowired
-    private UserService userService;
 
     private static Validator validator;
 
@@ -36,15 +30,6 @@ public class DemoApplicationTests {
 
     @Test
     public void contextLoads() {
-    }
-
-    @Test
-    public void isAdminUsernameTaken() {
-        String username = "admin";
-
-        boolean isTaken = userService.isUsernameTaken(username);
-
-        Assert.assertTrue(isTaken);
     }
 
     @Test
@@ -128,7 +113,7 @@ public class DemoApplicationTests {
 
         assertEquals( 1, constraintViolations.size() );
         assertEquals(
-                "size must be between 1 and 10000",
+                "must be greater than or equal to 1",
                 constraintViolations.iterator().next().getMessage()
         );
     }
@@ -201,11 +186,11 @@ public class DemoApplicationTests {
 
     @Test
     public void usernameIsNull(){
-        User user = new User("Jan", "", "mail@o2.pl", null, "password");
+        User user = new User("Jan", "Kowalski", "mail@o2.pl", null, "password");
         Set<ConstraintViolation<User>> constraintViolations =
                 validator.validate(user);
 
-        assertEquals( 2, constraintViolations.size() );
+        assertEquals( 1, constraintViolations.size() );
         assertEquals(
                 "required",
                 constraintViolations.iterator().next().getMessage()
@@ -220,7 +205,7 @@ public class DemoApplicationTests {
 
         assertEquals( 2, constraintViolations.size() );
         assertEquals(
-                "size must be between 1 and 24",
+                "size must be between 1 and 30",
                 constraintViolations.iterator().next().getMessage()
         );
     }
@@ -240,17 +225,29 @@ public class DemoApplicationTests {
 
     @Test
     public void passwordIsEmpty(){
-        User user = new User("Jan", "", "mail@o2.pl", "username", "");
+        User user = new User("Jan", "Kowalski", "mail@o2.pl", "username", "");
         Set<ConstraintViolation<User>> constraintViolations =
                 validator.validate(user);
 
-        assertEquals( 2, constraintViolations.size() );
+        assertEquals( 1, constraintViolations.size() );
         assertEquals(
                 "min 6 chars",
                 constraintViolations.iterator().next().getMessage()
         );
     }
 
+    /*@Test
+    public void isPostalCodeRegexValid(){
+        Purchase purchase = new Purchase();
+        purchase.setPostalCode("35-315");
+        Set<ConstraintViolation<Purchase>> constraintViolations =
+                validator.validate(purchase);
 
+        assertEquals( 1, constraintViolations.size() );
+        assertEquals(
+                "invalid postal code",
+                constraintViolations.iterator().next().getMessage()
+        );
+    }*/
 
 }

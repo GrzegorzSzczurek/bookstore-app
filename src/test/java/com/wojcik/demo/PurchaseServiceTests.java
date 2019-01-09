@@ -54,6 +54,6 @@ public class PurchaseServiceTests {
         purchases.add(purchase2);
 
         when(purchaseRepository.getPurchasesByUser(user)).thenReturn(purchases);
-        Assertions.assertEquals(purchaseService.getPurchasesByUser(user), purchases);
+        assertEquals(purchaseService.getPurchasesByUser(user), purchases);
     }
 }
