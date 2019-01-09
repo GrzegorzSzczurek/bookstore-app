@@ -7,7 +7,9 @@ import com.wojcik.demo.service.UserServiceImpl;
 import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.junit4.SpringRunner;
 
 import javax.jws.soap.SOAPBinding;
 import javax.validation.ConstraintViolation;
@@ -18,7 +20,10 @@ import java.util.Set;
 
 import static org.junit.Assert.assertEquals;
 
+@RunWith(SpringRunner.class)
 public class DemoApplicationTests {
+
+    BookServiceTests bookServiceTests;
 
     private static Validator validator;
 
@@ -132,7 +137,7 @@ public class DemoApplicationTests {
     }
 
     @Test
-    public void firstNameIsEmty(){
+    public void firstNameIsEmpty(){
         User user = new User("", "Kowalsky", "mail@o2.pl", "username", "password");
         Set<ConstraintViolation<User>> constraintViolations =
                 validator.validate(user);
@@ -205,7 +210,7 @@ public class DemoApplicationTests {
 
         assertEquals( 2, constraintViolations.size() );
         assertEquals(
-                "size must be between 1 and 24",
+                "size must be between 1 and 30",
                 constraintViolations.iterator().next().getMessage()
         );
     }

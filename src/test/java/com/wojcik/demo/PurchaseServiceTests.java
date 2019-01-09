@@ -4,12 +4,13 @@ import com.wojcik.demo.dao.PurchaseDAO;
 import com.wojcik.demo.entity.Purchase;
 import com.wojcik.demo.entity.User;
 import com.wojcik.demo.service.PurchaseServiceImpl;
-import org.junit.jupiter.api.Assertions;
+import org.junit.Test;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
+import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -18,6 +19,7 @@ import java.util.List;
 import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.when;
 
+@RunWith(SpringRunner.class)
 public class PurchaseServiceTests {
 
     @Mock
@@ -35,7 +37,7 @@ public class PurchaseServiceTests {
     }
 
     @Test
-    void shouldSavePurchase() {
+    public void shouldSavePurchase() {
         Date date = new Date(2019, 01, 9);
         user = new User(1, "Adam", "Nowak", "email@o2.pl", "nowaki", "mocnehaslo");
         purchase = new Purchase(1, user, date);
@@ -44,7 +46,7 @@ public class PurchaseServiceTests {
     }
 
     @Test
-    void shouldGetUsersPurchases() {
+    public void shouldGetUsersPurchases() {
         List<Purchase> purchases = new ArrayList<>();
         Date date = new Date(2019, 01, 9);
         user = new User(1, "Adam", "Nowak", "email@o2.pl", "nowaki", "mocnehaslo");

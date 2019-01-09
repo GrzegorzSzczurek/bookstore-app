@@ -36,7 +36,7 @@ public class User {
 
     @Column(unique = true)
     @NotNull(message = "required")
-    @Size(min=1, max=24)
+    @Size(min=1, max=30)
     private String username;
 
     @Column
