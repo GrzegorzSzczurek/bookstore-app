@@ -205,7 +205,7 @@ public class DemoApplicationTests {
 
         assertEquals( 2, constraintViolations.size() );
         assertEquals(
-                "size must be between 1 and 30",
+                "size must be between 1 and 24",
                 constraintViolations.iterator().next().getMessage()
         );
     }

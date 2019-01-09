@@ -1,5 +1,7 @@
 package com.wojcik.demo.entity;
 
+import org.hibernate.annotations.Cascade;
+
 import javax.persistence.*;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
@@ -40,7 +42,7 @@ public class Book implements Serializable {
     @Max(10000)
     private float price;
 
-    @OneToMany(mappedBy = "book")
+    @OneToMany(mappedBy = "book", cascade = CascadeType.REMOVE, orphanRemoval = true)
     private List<PurchaseDetails> purchaseDetailsList;
 
     public Book() {
