@@ -4,5 +4,5 @@ BOOKSTORE APP
 
 Version 0.2
 
-- Administration pane
+- Administration panel
   - Admin can search, add, delete and update books
